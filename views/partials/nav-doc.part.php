@@ -12,6 +12,7 @@
                 <span>[PHOTO]</span>
             </a>
         </div>
+
         <div class="collapse navbar-collapse navbar-right" id="menu">
             <ul class="nav navbar-nav">
                 <li class="<?= esOpcionMenuActiva('index') ? 'active' : '' ?> lien">
