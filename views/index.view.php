@@ -51,7 +51,7 @@
         <!--second category pictures -->
             <?php
             $categoria="category2";
-            $categoriaActiva=true;
+            $categoriaActiva=false;
             shuffle($imagenes);
             include __DIR__ . '/partials/image-gallery.part.php';
             ?>
@@ -60,7 +60,7 @@
         <!-- Third Category Pictures -->
             <?php
             $categoria="category2";
-            $categoriaActiva=true;
+            $categoriaActiva=false;
             shuffle($imagenes);
             include __DIR__ . '/partials/image-gallery.part.php';
             ?>
