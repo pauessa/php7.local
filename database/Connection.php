@@ -10,22 +10,21 @@ class Connection
 {
     /**
      * @return PDO
+     * @throws AppException
      */
  public static function make(){
-     try {
-         $opciones = [
-             PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
-             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-             PDO::ATTR_PERSISTENT => true
-         ];
-         $connection = new PDO(
-             'mysql:host=php7.local;dbname=cursophp7;charset=utf8',
-             'userCurso',
-             'php',
-             $opciones
+
+     try{
+         $config=App::get('config')['database'];
+         $connection=new PDO(
+             $config['connection'] . ';dbname=' . $config['name'] ,
+             $config['username'],
+             $config['password'],
+             $config['options']
          );
      }catch (PDOException $PDOException){
-         die($PDOException->getMessage());
+         throw new AppException("no se ha podido conectar a la BDA");
+//         die($PDOException->getMessage());
      }
      return $connection;
  }

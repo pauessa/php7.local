@@ -59,7 +59,8 @@
                                 <td>
                                     <img src="<?= $imagen->getUrlGallery() ?>"
                                          alt="<?= $imagen->getDescripcion() ?>"
-                                         title="<?= $imagen->getDescripcion() ?>">
+                                         title="<?= $imagen->getDescripcion() ?>"
+                                         width="100px"/>
                                 </td>
                                 <td><?= $imagen->getNumVisualizaciones() ?></td>
                                 <td><?= $imagen->getNumLikes() ?></td>

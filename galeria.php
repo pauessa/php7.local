@@ -4,11 +4,16 @@ require_once 'utils/File.php';
 require_once 'entity/ImagenGaleria.php';
 require_once 'database/Connection.php';
 require_once 'database/QueryBuilder.php';
+require_once 'core/App.php';
+require_once 'exception/AppException.php';
 
 $errores=[];
 $descripcion='';
 $mensaje='';
-$connection=Connection::make();
+$config=require_once 'app/config.php';
+App::bind('config',$config);
+
+$connection=App::getConnection();
 
 if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
     try{
@@ -19,11 +24,12 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
         $imagen->saveUploadFile(ImagenGaleria::RUTA_IMAGENES_GALLERY);
         $imagen->copyFile(ImagenGaleria::RUTA_IMAGENES_GALLERY,ImagenGaleria::RUTA_IMAGENES_PORTFOLIO);
 
-
-        $sql="INSERT INTO imagenes(nombre, descripcion) VALUES('". $imagen->getFileName(). "', '$descripcion')";
+        $sql="INSERT INTO imagenes(nombre, descripcion) VALUES(:nombre,:descripcion)";
         $pdostatement=$connection->prepare($sql);
-        $parameters=[':nombre'=>$imagen->getFileName(),'descripcion'=>$descripcion];
-
+        $parameters=[
+            ':nombre'=>$imagen->getFileName(),
+            'descripcion'=>$descripcion
+        ];
 
         if($pdostatement->execute($parameters)===false)
             $errores[]="No se ha podido guardar la imagen en la BDA";
@@ -35,9 +41,9 @@ if ( $_SERVER['REQUEST_METHOD'] === 'POST' ){
     }catch (FileException $fileException){
         $errores[]=$fileException->getMessage();
     }
-
-    $queryBuilder=new QueryBuilder($connection);
-    $imagenes=$queryBuilder->findAll('imagenes','ImagenGaleria');
 }
+
+$queryBuilder=new QueryBuilder($connection);
+$imagenes=$queryBuilder->findAll('imagenes','ImagenGaleria');
 
 require 'views/galeria.view.php';
