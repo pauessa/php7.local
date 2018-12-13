@@ -5,7 +5,7 @@
  * Date: 29/11/2018
  * Time: 11:57
  */
-
+require_once __DIR__ . '/../database/IEntity.php';
 
 class ImagenGaleria implements IEntity
 {
