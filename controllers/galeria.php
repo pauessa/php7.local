@@ -1,13 +1,13 @@
 <?php
-require_once 'utils/utils.php';
-require_once 'utils/File.php';
-require_once 'entity/ImagenGaleria.php';
-require_once 'database/Connection.php';
-require_once 'repository/ImagenGaleriaRepository.php';
-require_once 'core/App.php';
-require_once 'exception/AppException.php';
-require_once 'exception/QueryException.php';
-require_once 'exception/FileException.php';
+require_once  __DIR__ . '/../utils/utils.php';
+require_once  __DIR__ . '/../utils/File.php';
+require_once  __DIR__ . '/../entity/ImagenGaleria.php';
+require_once  __DIR__ . '/../database/Connection.php';
+require_once  __DIR__ . '/../repository/ImagenGaleriaRepository.php';
+require_once  __DIR__ . '/../core/App.php';
+require_once  __DIR__ . '/../exception/AppException.php';
+require_once  __DIR__ . '/../exception/QueryException.php';
+require_once  __DIR__ . '/../exception/FileException.php';
 
 
 $errores = [];
@@ -15,7 +15,7 @@ $descripcion = '';
 $mensaje = '';
 try {
 
-    $config = require_once 'app/config.php';
+    $config = require_once  __DIR__ . '/../app/config.php';
     App::bind('config', $config);
     $connection = App::getConnection();
     $imagenGaleriaRepository = new ImagenGaleriaRepository();
@@ -45,4 +45,4 @@ try {
 }
 
 
-require 'views/galeria.view.php';
+require  __DIR__ . '/../views/galeria.view.php';

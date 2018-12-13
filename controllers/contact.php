@@ -1,5 +1,5 @@
 <?php
-require 'utils/utils.php';
+require  __DIR__ . '/../utils/utils.php';
 
 $errores = [];
 $mensaje = "";
@@ -31,4 +31,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 }
 
-require 'views/contact.view.php';
+require  __DIR__ . '/../views/contact.view.php';

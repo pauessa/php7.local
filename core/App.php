@@ -5,7 +5,7 @@
  * Date: 11/12/2018
  * Time: 9:24
  */
-require_once 'exception/AppException.php';
+require_once  __DIR__ . '/../exception/AppException.php';
 class App
 {
 
